@@ -111,16 +111,21 @@
             { word: "ESTRATEGIA", hint: "Plano para alcançar um objetivo." },
             { word: "INOVACAO", hint: "Introdução de algo novo." }
         ];
-        
         let chosenWordObj, hiddenWord, attempts;
         let hangmanStages = [ "🪢 - 6 tentativas", "🪢\n😀", "🪢\n😀\n👕", "🪢\n😀\n👕🫱", "🪢\n😀\n🫲👕🫱", "🪢\n😀\n👕\n🫱🫲\n🦵", "🪢\n😀\n👕\n🫱🫲\n🦵🦵"];
-        
         function startGame() {
             document.getElementById("startScreen").style.display = "none";
             document.getElementById("gameContainer").style.display = "block";
             resetGame();
+            
+        }   
+
+        function restartGame() {
+            resetGame();
+            document.getElementById("endScreen").style.display = "none"; // Hide the end screen
+            document.getElementById("gameContainer").style.display = "block"; // Show the game container
         }
-        
+
         function resetGame() {
             chosenWordObj = words[Math.floor(Math.random() * words.length)];
             hiddenWord = "_".repeat(chosenWordObj.word.length).split("");
@@ -131,7 +136,6 @@
             document.getElementById("letters").innerHTML = "";
             createLetters();
         }
-        
         function createLetters() {
             const lettersDiv = document.getElementById("letters");
             for (let i = 65; i <= 90; i++) {
